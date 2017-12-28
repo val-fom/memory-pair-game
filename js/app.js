@@ -45,9 +45,7 @@ var cards = document.querySelectorAll('.card');
 
 var pickCard = function(card) {
 	card.classList.add('picked');
-	var type = card.getAttribute("class").slice(5, 11);
-	pickedCards.push(type);
-	console.log('pickedCards:', pickedCards);
+	pickedCards.push(card);
 }
 
 var closeCards = function() {
@@ -56,7 +54,6 @@ var closeCards = function() {
 			card.classList.remove('picked');
 			pickedCards.length = 0;
 		});
-		console.log('pickedCards:', pickedCards);
 	}, 1000)
 };
 
@@ -66,9 +63,11 @@ var hidePickedCards = function(type) {
 		card.classList.add( 'hidden' );
 		pickedCards.length = 0;
 	});
-	// closeCards(); sometimes it closes wrong cards
-	console.log(cards);
 };
+
+var getType = function(card) {
+	return card.getAttribute("class").slice(5, 11);
+}
 
 cards.forEach(function(card) {
 	card.addEventListener('click', function() {
@@ -76,7 +75,7 @@ cards.forEach(function(card) {
 			pickCard(this);
 		} else if (pickedCards.length === 1) {
 			pickCard(this);
-			if (pickedCards[0] === pickedCards[1]) {
+			if ( getType(pickedCards[0]) === getType(pickedCards[1]) && pickedCards[0] !== pickedCards[1]) {
 				setTimeout(hidePickedCards, 1000);
 			} else {
 				closeCards();
