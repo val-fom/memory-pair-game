@@ -1,6 +1,6 @@
 // make html markup by JS
 
-// makes an array with 16 cards of 8 different types (from type-0 to type-7)
+// makes an array with 16 card classes of 8 different types (from type-0 to type-7)
 var cardClasses = Array(16).fill('type-').map(function(item, i) {
 	if (i > 7) return item + (i - 8);
 	return item + i;
@@ -40,28 +40,31 @@ cardClasses.forEach(function(item) {
 })
 
 //
-var pickedCards = 0;
+var pickedCards = [];
 var cards = document.querySelectorAll('.card');
 
 var pickCard = function(card) {
 	card.classList.add('picked');
-	pickedCards++;
+	var type = card.getAttribute("class").slice(5, 11);
+	pickedCards.push(type);
+	console.log('pickedCards:', pickedCards);
 }
 
 var closeCards = function() {
 	setTimeout(function() {
 		document.querySelectorAll('.picked').forEach(function(card) {
 			card.classList.remove('picked');
-			pickedCards = 0;
+			pickedCards.length = 0;
 		});
+		console.log('pickedCards:', pickedCards);
 	}, 1000)
 };
 
 cards.forEach(function(card) {
 	card.addEventListener('click', function() {
-		if (pickedCards === 0) {
+		if (pickedCards.length === 0) {
 			pickCard(this);
-		} else if (pickedCards === 1) {
+		} else if (pickedCards.length === 1) {
 			pickCard(this);
 			closeCards();
 		}
