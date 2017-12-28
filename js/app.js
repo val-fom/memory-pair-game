@@ -7,7 +7,7 @@ var cardClasses = Array(16).fill('type-').map(function(item, i) {
 });
 
 // shuffle it
-cardClasses = Shuffle(cardClasses);
+cardClasses = shuffle(cardClasses);
 
 // make single card of specified type in container 
 var makeCard = function(type) {
@@ -35,11 +35,11 @@ var makeCard = function(type) {
 };
 
 // populate containder with cards
-cardClasses.forEach(function(item) {
-	makeCard(item);
-})
+cardClasses.forEach(function(type) {
+	makeCard(type);
+});
 
-//
+// game
 var pickedCards = [];
 var cards = document.querySelectorAll('.card');
 
@@ -85,7 +85,7 @@ cards.forEach(function(card) {
 });
 
 //shuffle array
-function Shuffle(o) {
+function shuffle(o) {
 	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 		return o;
 };
