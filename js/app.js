@@ -1,3 +1,27 @@
+// make html markup by JS
+
+var front = document.createElement( 'div' );
+front.setAttribute( 'class', 'front');
+
+var back = document.createElement( 'div' );
+back.setAttribute( 'class', 'back');
+
+var flipper = document.createElement( 'div' );
+flipper.setAttribute( 'class', 'flipper');
+flipper.appendChild( front );
+flipper.appendChild( back );
+
+var flipContainer = document.createElement( 'div' );
+flipContainer.setAttribute( 'class', 'flip-container');
+flipContainer.appendChild( flipper );
+
+var card = document.createElement( 'div' );
+card.setAttribute( 'class', 'card');
+card.appendChild( flipContainer );
+
+var container = document.querySelector('.container');
+container.appendChild( card );
+
 
 var pickedCards = 0;
 var cards = document.querySelectorAll('.card');
