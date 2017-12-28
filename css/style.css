@@ -37,35 +37,35 @@
 	background-size: cover; 
 }
 
-.card:nth-child(8n+1) .back {
+.type-0 .back {
 	background-image: url(../img/noun_1284499_cc.png);
 }
 
-.card:nth-child(8n+2) .back {
+.type-1 .back {
 	background-image: url(../img/noun_1284495_cc.png);
 }
 
-.card:nth-child(8n+3) .back {
+.type-2 .back {
 	background-image: url(../img/noun_1284489_cc.png);
 }
 
-.card:nth-child(8n+4) .back {
+.type-3 .back {
 	background-image: url(../img/noun_1284485_cc.png);
 }
 
-.card:nth-child(8n+5) .back {
+.type-4 .back {
 	background-image: url(../img/noun_1284481_cc.png);
 }
 
-.card:nth-child(8n+6) .back {
+.type-5 .back {
 	background-image: url(../img/noun_1284498_cc.png);
 }
 
-.card:nth-child(8n+7) .back {
+.type-6 .back {
 	background-image: url(../img/noun_1284479_cc.png);
 }
 
-.card:nth-child(8n+8) .back {
+.type-7 .back {
 	background-image: url(../img/noun_1284477_cc.png);
 }
 
