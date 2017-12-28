@@ -1,28 +1,45 @@
 // make html markup by JS
 
-var front = document.createElement( 'div' );
-front.setAttribute( 'class', 'front');
+// makes an array with 16 cards of 8 different types (from type-0 to type-7)
+var cardClasses = Array(16).fill('type-').map(function(item, i) {
+	if (i > 7) return item + (i - 8);
+	return item + i;
+});
 
-var back = document.createElement( 'div' );
-back.setAttribute( 'class', 'back');
+// shuffle it
+cardClasses = Shuffle(cardClasses);
 
-var flipper = document.createElement( 'div' );
-flipper.setAttribute( 'class', 'flipper');
-flipper.appendChild( front );
-flipper.appendChild( back );
+// make single card of specified type in container 
+var makeCard = function(type) {
+	var front = document.createElement( 'div' );
+	front.setAttribute( 'class', 'front');
 
-var flipContainer = document.createElement( 'div' );
-flipContainer.setAttribute( 'class', 'flip-container');
-flipContainer.appendChild( flipper );
+	var back = document.createElement( 'div' );
+	back.setAttribute( 'class', 'back');
 
-var card = document.createElement( 'div' );
-card.setAttribute( 'class', 'card');
-card.appendChild( flipContainer );
+	var flipper = document.createElement( 'div' );
+	flipper.setAttribute( 'class', 'flipper');
+	flipper.appendChild( front );
+	flipper.appendChild( back );
 
-var container = document.querySelector('.container');
-container.appendChild( card );
+	var flipContainer = document.createElement( 'div' );
+	flipContainer.setAttribute( 'class', 'flip-container');
+	flipContainer.appendChild( flipper );
 
+	var card = document.createElement( 'div' );
+	card.setAttribute( 'class', 'card ' + type );
+	card.appendChild( flipContainer );
 
+	var container = document.querySelector('.container');
+	container.appendChild( card );
+};
+
+// populate containder with cards
+cardClasses.forEach(function(item) {
+	makeCard(item);
+})
+
+//
 var pickedCards = 0;
 var cards = document.querySelectorAll('.card');
 
@@ -51,7 +68,7 @@ cards.forEach(function(card) {
 	});
 });
 
-
+//shuffle array
 function Shuffle(o) {
 	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 		return o;
