@@ -69,7 +69,10 @@
 	background-image: url(../img/noun_1284477_cc.png);
 }
 
-
+.hidden {
+	opacity: 0;
+	transition: 0.3s;
+}
 
 
 
