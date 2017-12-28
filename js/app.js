@@ -60,13 +60,27 @@ var closeCards = function() {
 	}, 1000)
 };
 
+var hidePickedCards = function(type) {
+	var cards = document.querySelectorAll( '.picked' );
+	cards.forEach(function(card) {
+		card.classList.add( 'hidden' );
+		pickedCards.length = 0;
+	});
+	// closeCards(); sometimes it closes wrong cards
+	console.log(cards);
+};
+
 cards.forEach(function(card) {
 	card.addEventListener('click', function() {
 		if (pickedCards.length === 0) {
 			pickCard(this);
 		} else if (pickedCards.length === 1) {
 			pickCard(this);
-			closeCards();
+			if (pickedCards[0] === pickedCards[1]) {
+				setTimeout(hidePickedCards, 1000);
+			} else {
+				closeCards();
+			}
 		}
 	});
 });
