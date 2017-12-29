@@ -1,36 +1,48 @@
-.body {
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+body, html {
 	height: 100%;
-  width: 100%;
-  font-size: 22px;
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	font-family: 'Roboto Mono', monospace;
+	font-size: 14px;
+	color: #222;
+	text-shadow: 0px 0px 1px #ccc;
+}
+
+h1 {
+	font-weight: normal;
+	font-size: 1.8em;
+}
+
+a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+	color: inherit;
 }
 
 .container {
-	width: 320px;
-	height: 320px;
-	margin: auto; 
-
-	/*background-color: #e5e6e5;*/
-	
-	border-radius: 10px;
-  /*box-shadow: 0px 0px 10px 0px #ccc;*/
-
-  display: flex;
-  flex-wrap: wrap;
+	width: 100vw;
+	max-width: 320px;
+	height: 100vw;
+	max-height: 320px;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .card {
 	width: 25%;
-	min-height: 25%;
-	height: 1px;
-	border-radius: 10px;
+	height: 25%;
+	padding: 1%;
+	box-sizing: border-box;
 }
 
 .front, .back {
-	background-color: #ffffff;
-	border: 1px solid grey;
-	border-radius: 10px;
+	border: 1px solid #333;
+	border-radius: 10%;
 	box-sizing: border-box;
-  box-shadow: 0px 0px 10px 0px #ccc;
+	box-shadow: 0px 0px 10px 0px #ccc;
 }
 
 .back {
@@ -74,6 +86,16 @@
 	transition: 0.3s;
 }
 
+@media screen and (min-width: 550px) {
+	body {
+		font-size: 16px;
+	}
+
+	.container {
+		max-width: 480px;
+		max-height: 480px;
+	}
+}
 
 
 
