@@ -41,6 +41,7 @@ cardClasses.forEach(function(type) {
 
 // game
 var pickedCards = [];
+var hiddenPairsCount = 0;
 var cards = document.querySelectorAll('.card');
 
 var pickCard = function(card) {
@@ -57,11 +58,21 @@ var closeCards = function() {
 	}, 1000);
 };
 
+var checkWin = function() {
+	if (hiddenPairsCount === 8) {
+		setTimeout(function() {
+			alert('You won!');
+		}, 300);
+	}
+}
+
 var hidePickedCards = function(type) {
 	pickedCards.forEach(function(card) {
 		card.classList.add( 'hidden' );
 	});
-	closeCards();
+	pickedCards.length = 0;
+	hiddenPairsCount++;
+	checkWin();
 };
 
 var getType = function(card) {
