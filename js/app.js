@@ -50,11 +50,11 @@ var pickCard = function(card) {
 
 var closeCards = function() {
 	setTimeout(function() {
-		document.querySelectorAll('.picked').forEach(function(card) {
+		pickedCards.forEach(function(card) {
 			card.classList.remove('picked');
-			pickedCards.length = 0;
 		});
-	}, 1000)
+		pickedCards.length = 0;
+	}, 1000);
 };
 
 var hidePickedCards = function(type) {
