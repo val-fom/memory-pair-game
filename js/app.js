@@ -58,11 +58,10 @@ var closeCards = function() {
 };
 
 var hidePickedCards = function(type) {
-	var cards = document.querySelectorAll( '.picked' );
-	cards.forEach(function(card) {
+	pickedCards.forEach(function(card) {
 		card.classList.add( 'hidden' );
-		pickedCards.length = 0;
 	});
+	closeCards();
 };
 
 var getType = function(card) {
