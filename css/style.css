@@ -28,7 +28,7 @@ a:link, a:visited, a:active {
 }
 
 a:hover {
-		text-decoration: underline;
+	text-decoration: underline;
 }
 
 .container {
@@ -106,10 +106,10 @@ a:hover {
 .flip-container {
 	perspective: 300px;
 }
-	/* flip the pane when hovered */
-	.picked .flip-container .flipper {
-		transform: rotateY(180deg);
-	}
+/* flip the pane when hovered */
+.picked .flip-container .flipper {
+	transform: rotateY(180deg);
+}
 
 .flip-container, .front, .back {
 	width: 100%;
@@ -159,7 +159,9 @@ a:hover {
 	}
 }
 
-
-
-
-
+/* disable hover styling on touch devices */
+@media (pointer:coarse) {
+	.card:hover .front {
+		box-shadow: 0px 0px 10px 0px #ccc;
+	}
+}
