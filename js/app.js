@@ -10,27 +10,12 @@ var cardClasses = Array(16).fill('type-').map(function(item, i) {
 cardClasses = shuffle(cardClasses);
 
 // make single card of specified type in container 
+var container = document.querySelector('.container');
+
 var makeCard = function(type) {
-	var front = document.createElement( 'div' );
-	front.setAttribute( 'class', 'front');
-
-	var back = document.createElement( 'div' );
-	back.setAttribute( 'class', 'back');
-
-	var flipper = document.createElement( 'div' );
-	flipper.setAttribute( 'class', 'flipper');
-	flipper.appendChild( front );
-	flipper.appendChild( back );
-
-	var flipContainer = document.createElement( 'div' );
-	flipContainer.setAttribute( 'class', 'flip-container');
-	flipContainer.appendChild( flipper );
-
 	var card = document.createElement( 'div' );
 	card.setAttribute( 'class', 'card ' + type );
-	card.appendChild( flipContainer );
-
-	var container = document.querySelector('.container');
+	card.innerHTML = '<div class="flip-container"><div class="flipper"><div class="front"></div><div class="back"></div></div></div>';
 	container.appendChild( card );
 };
 
