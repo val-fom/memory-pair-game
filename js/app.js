@@ -35,12 +35,10 @@ var pickCard = function(card) {
 }
 
 var closeCards = function() {
-	setTimeout(function() {
-		pickedCards.forEach(function(card) {
-			card.classList.remove('picked');
-		});
-		pickedCards.length = 0;
-	}, 1000);
+	pickedCards.forEach(function(card) {
+		card.classList.remove('picked');
+	});
+	pickedCards.length = 0;
 };
 
 var checkWin = function() {
@@ -70,10 +68,12 @@ cards.forEach(function(card) {
 			pickCard(this);
 		} else if (pickedCards.length === 1) {
 			pickCard(this);
-			if ( getType(pickedCards[0]) === getType(pickedCards[1]) && pickedCards[0] !== pickedCards[1]) {
-				setTimeout(hidePickedCards, 1000);
-			} else {
+			if (pickedCards[0] === pickedCards[1]) {
 				closeCards();
+			} else if ( getType(pickedCards[0]) === getType(pickedCards[1]) && pickedCards[0] !== pickedCards[1]) {
+				setTimeout(hidePickedCards, 800);
+			} else {
+				setTimeout(closeCards, 800);
 			}
 		}
 	});
