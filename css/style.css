@@ -42,9 +42,9 @@ a:hover {
 }
 
 .card {
-	width: 25%;
-	height: 25%;
-	padding: 1%;
+	width: 23%;
+	height: 23%;
+	margin: 1%;
 	box-sizing: border-box;
 }
 
