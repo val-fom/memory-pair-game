@@ -6,7 +6,7 @@ body, html {
 	text-align: center;
 	margin: 0;
 	font-family: 'Roboto Mono', monospace;
-	font-size: 14px;
+	font-size: 12px;
 	color: #222;
 	text-shadow: 0px 0px 1px #ccc;
 }
@@ -14,11 +14,21 @@ body, html {
 h1 {
 	font-weight: normal;
 	font-size: 1.8em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
-a:link, a:visited, a:hover, a:active {
+p {
+	margin-top: 1.5em;
+}
+
+a:link, a:visited, a:active {
 	text-decoration: none;
 	color: inherit;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 .container {
@@ -43,6 +53,11 @@ a:link, a:visited, a:hover, a:active {
 	border-radius: 10%;
 	box-sizing: border-box;
 	box-shadow: 0px 0px 10px 0px #ccc;
+	transition: 0.5s;
+}
+
+.card:hover .front {
+	box-shadow: 0px 0px 10px 0px #333;
 }
 
 .back {
@@ -91,10 +106,10 @@ a:link, a:visited, a:hover, a:active {
 .flip-container {
 	perspective: 300px;
 }
-	/* flip the pane when hovered */
-	.picked .flip-container .flipper {
-		transform: rotateY(180deg);
-	}
+/* flip the pane when hovered */
+.picked .flip-container .flipper {
+	transform: rotateY(180deg);
+}
 
 .flip-container, .front, .back {
 	width: 100%;
@@ -135,7 +150,7 @@ a:link, a:visited, a:hover, a:active {
 /* responsive */
 @media screen and (min-width: 550px) {
 	body {
-		font-size: 16px;
+		font-size: 14px;
 	}
 
 	.container {
@@ -144,7 +159,9 @@ a:link, a:visited, a:hover, a:active {
 	}
 }
 
-
-
-
-
+/* disable hover styling on touch devices */
+@media (pointer:coarse) {
+	.card:hover .front {
+		box-shadow: 0px 0px 10px 0px #ccc;
+	}
+}
