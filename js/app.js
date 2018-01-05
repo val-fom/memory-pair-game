@@ -1,3 +1,49 @@
+class Game {
+	constructor() {
+		// makes an array with 16 card classes of 8 different types (from type-0 to type-7)
+		let cardClasses = Array(16).fill('type-').map(function(item, i) {
+			if (i > 7) return item + (i - 8);
+			return item + i;
+		});
+		//shuffle array
+		let shuffle = function(o) {
+			for(let j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+			return o;
+		}
+
+		this.cardClassesShuffled = shuffle(cardClasses);
+		this.container = document.querySelector('.container');
+		this.pickedCards = [];
+		this.hiddenPairsCount = 0;
+
+	}
+
+	_makeCards() {
+		// make single card of specified type in container
+		let makeCard = (type) => {
+			let card = document.createElement( 'div' );
+			card.setAttribute( 'class', 'card ' + type );
+			card.innerHTML = '<div class="flip-container"><div class="flipper"><div class="front"></div><div class="back"></div></div></div>';
+			this.container.appendChild( card );
+		}
+		// populate containder with cards
+		this.cardClassesShuffled.forEach(function(type) {
+			makeCard(type);
+		});
+	}
+
+	init() {
+		_makeCards();
+		this.cards = document.querySelectorAll('.card');
+	}
+
+}
+
+const game = new Game;
+
+console.log(game);
+
+
 // make html markup by JS
 
 // makes an array with 16 card classes of 8 different types (from type-0 to type-7)
