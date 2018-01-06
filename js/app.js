@@ -3,21 +3,20 @@
 class Game {
 	constructor() {
 		// makes an array with 16 card classes of 8 different types (from type-0 to type-7)
-		let cardClasses = Array(16).fill('type-').map(function(item, i) {
+		this.cardClasses = Array(16).fill('type-').map(function(item, i) {
 			if (i > 7) return item + (i - 8);
 			return item + i;
 		});
-		//shuffle array
-		const shuffle = function(o) {
-			for(let j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-			return o;
-		};
 
-		this.cardClassesShuffled = shuffle(cardClasses);
 		this.container = document.querySelector('.container');
 		this.pickedCards = [];
 		this.hiddenPairsCount = 0;
+	}
 
+	//shuffle array
+	shuffle(o) {
+		for(let j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+		return o;
 	}
 
 	makeCards() {
@@ -28,8 +27,10 @@ class Game {
 			card.innerHTML = '<div class="flip-container"><div class="flipper"><div class="front"></div><div class="back"></div></div></div>';
 			this.container.appendChild( card );
 		};
+		//shuffle cards classNames
+		this.cardClasses = this.shuffle(this.cardClasses);
 		// populate containder with cards
-		this.cardClassesShuffled.forEach(function(type) {
+		this.cardClasses.forEach(function(type) {
 			makeCard(type);
 		});
 	}
@@ -94,9 +95,12 @@ class Game {
 	}
 
 	restart() {
-		this.cards.forEach( card => {
-			card.classList.remove('picked', 'hidden');
+		this.cardClasses = this.shuffle(this.cardClasses);
+		this.cards.forEach( (card, i) => {
+			card.className = 'card';
+			card.classList.add( this.cardClasses[i] );
 		});
+		this.hiddenPairsCount = 0;
 	}
 
 }
