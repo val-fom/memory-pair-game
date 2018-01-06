@@ -54,8 +54,9 @@ class Game {
 
 	checkWin() {
 		if (this.hiddenPairsCount === 8) {
-			setTimeout(function() {
+			setTimeout(() => {
 				alert('You won!');
+				this.restart();
 			}, 300);
 		}
 	}
@@ -89,6 +90,12 @@ class Game {
 					}
 				}
 			});
+		});
+	}
+
+	restart() {
+		this.cards.forEach( card => {
+			card.classList.remove('picked', 'hidden');
 		});
 	}
 
