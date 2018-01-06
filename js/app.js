@@ -1,3 +1,5 @@
+'use strict';
+
 class Game {
 	constructor() {
 		// makes an array with 16 card classes of 8 different types (from type-0 to type-7)
@@ -6,10 +8,10 @@ class Game {
 			return item + i;
 		});
 		//shuffle array
-		let shuffle = function(o) {
+		const shuffle = function(o) {
 			for(let j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 			return o;
-		}
+		};
 
 		this.cardClassesShuffled = shuffle(cardClasses);
 		this.container = document.querySelector('.container');
@@ -20,12 +22,12 @@ class Game {
 
 	makeCards() {
 		// make single card of specified type in container
-		let makeCard = (type) => {
+		let makeCard = type => {
 			let card = document.createElement( 'div' );
 			card.setAttribute( 'class', 'card ' + type );
 			card.innerHTML = '<div class="flip-container"><div class="flipper"><div class="front"></div><div class="back"></div></div></div>';
 			this.container.appendChild( card );
-		}
+		};
 		// populate containder with cards
 		this.cardClassesShuffled.forEach(function(type) {
 			makeCard(type);
@@ -48,7 +50,7 @@ class Game {
 			card.classList.remove('picked');
 		});
 		this.pickedCards.length = 0;
-	};
+	}
 
 	checkWin() {
 		if (this.hiddenPairsCount === 8) {
@@ -58,14 +60,14 @@ class Game {
 		}
 	}
 
-	hidePickedCards(type) {
+	hidePickedCards() {
 		this.pickedCards.forEach(function(card) {
 			card.classList.add( 'hidden' );
 		});
 		this.pickedCards.length = 0;
 		this.hiddenPairsCount++;
 		this.checkWin();
-	};
+	}
 
 	getType(card) {
 		return card.getAttribute("class").slice(5, 11);
@@ -81,9 +83,9 @@ class Game {
 					if (this.pickedCards[0] === this.pickedCards[1]) {
 						this.closeCards();
 					} else if ( this.getType(this.pickedCards[0]) === this.getType(this.pickedCards[1]) && this.pickedCards[0] !== this.pickedCards[1]) {
-						setTimeout(this.hidePickedCards.bind(this), 800);
+						setTimeout( () => { this.hidePickedCards(); }, 800);
 					} else {
-						setTimeout(this.closeCards.bind(this), 800);
+						setTimeout( () => { this.closeCards(); }, 800);
 					}
 				}
 			});
@@ -92,5 +94,5 @@ class Game {
 
 }
 
-const game = new Game;
+const game = new Game();
 game.init();
